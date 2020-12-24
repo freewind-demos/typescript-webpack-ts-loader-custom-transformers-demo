@@ -1,6 +1,7 @@
-import { Configuration } from 'webpack';
+import {Configuration} from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
+import {customTransformers} from './src/customTransformers';
 
 const config: Configuration = {
   mode: 'development',
@@ -17,6 +18,9 @@ const config: Configuration = {
     rules: [{
       test: /\.tsx?$/,
       loader: 'ts-loader',
+      options: {
+        getCustomTransformers: () => customTransformers
+      },
       exclude: /node_modules/
     }]
   },
